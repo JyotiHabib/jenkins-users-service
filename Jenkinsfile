@@ -36,6 +36,13 @@ pipeline {
             steps {
                 sh 'mvn package -DskipTests=true' 
             }
+            }
+            
+            stage('dockersize') {
+            steps {
+                sh 'docker build -t user-service:latest .' 
+            }
+        
         }
     }
 }
