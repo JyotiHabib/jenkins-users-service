@@ -14,12 +14,16 @@ pipeline {
                 sh 'mvn compile' 
             }
         }
+        
+       
                 
         stage('quality') {
             steps {
-                sh 'mvn sonar:sonar' 
+                sh 'echo skipping' 
             }
         }
+        
+         
         
         stage('test') {
             steps {
