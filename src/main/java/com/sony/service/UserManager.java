@@ -15,7 +15,7 @@ public class UserManager {
 		users = new HashMap<>();
 		User user;
 		
-		user = new User("Vinod","Kumar","vinod@xmpl.com","Bangalore");
+		user = new User("Vi","Kumar","vinod@xmpl.com","Bangalore");
 		users.put(user.getId(),user);
 		
 		user = new User("John","Doe","johndoe@xmpl.com","Dallas");
