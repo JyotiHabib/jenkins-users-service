@@ -22,12 +22,13 @@ pipeline {
         }
         
        
-                
+      /*          
         stage('quality') {
             steps {
                 sh 'echo skipping' 
             }
         }
+        */
         
          
         
@@ -52,6 +53,7 @@ pipeline {
             
         
         }
+       /*
         stage('integration tests') {
             steps {
                
@@ -64,9 +66,18 @@ pipeline {
 
             }
         }
+        
+        stage('docker publish'){
+            steps{
+                withDockerRegistry([ credentails: 'docker_creds', url:'' ]) {
+                      sh "docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:$(ENV.BUILD_ID)"
+                      sh "docker push $(DOCKER_REPO}/${DOCKER_IMG_NAME}:latest"                                                       
+                                                                         }
+            }
+        }
+
         post {
-            always {
-               
+            always {   
                 sh 'docker stop ${DOCKER_TMP_CONTAINER_NAME}'
                 
                 sh "docker rmi ${DOCKER_IMG_NAME}:latest ${DOCKER_IMAGE_NAME}:${env.BUILD_ID}"
